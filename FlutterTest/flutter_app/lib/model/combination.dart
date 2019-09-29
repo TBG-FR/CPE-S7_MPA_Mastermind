@@ -87,20 +87,6 @@ class Combination extends ListBase<CodePeg> {
   // ------------------------------------------------------------------------
   // ------------------------------------------------------------------------
 
-//  @override
-//  int length = Settings.codeLength;
-//
-//  @override
-//  CodePeg operator [](int index) {
-//    // TODO: implement []
-//    return null;
-//  }
-//
-//  @override
-//  void operator []=(int index, CodePeg value) {
-//    // TODO: implement []=
-//  }
-
   List innerList = new List(Settings.codeLength);
 
   int get length => innerList.length;

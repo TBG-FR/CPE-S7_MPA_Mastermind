@@ -9,6 +9,7 @@ class Settings {
   static final Color defaultColor = Colors.blueGrey;
   static final Random random = new Random();
 
+  // TODO : Move to Tools/Utils/Helper
   static Color getRandomColor()
   {
     int randomInt = random.nextInt(codeLength);
@@ -16,6 +17,7 @@ class Settings {
     return availableColors[randomInt];
   }
 
+  // TODO : Move to Tools/Utils/Helper
   static Color getRandomColorDifferent(Color color)
   {
     Color returnColor;

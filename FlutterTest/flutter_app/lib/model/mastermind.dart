@@ -1,9 +1,6 @@
 
-import 'dart:math';
-import 'dart:developer' as developer;
 import 'dart:ui';
 import 'combination.dart';
-import 'peg.key.dart';
 import 'settings.dart';
 import 'try.dart';
 
@@ -38,6 +35,7 @@ class Mastermind {
   void checkLastTry()
   {
     tries.last.result = secretCode.compare(tries.last.tryCode);
+    newTry();
   }
 
 //  void modifySecretCodePeg(int pegIndex)

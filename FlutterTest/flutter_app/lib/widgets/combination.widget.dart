@@ -3,20 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/model/combination.dart';
 import 'package:flutter_app/model/mastermind.dart';
 import 'package:flutter_app/model/settings.dart';
-
 import 'peg.widget.dart';
 
 class CombinationWidget extends StatefulWidget {
 
   final Combination combination;
 
-  CombinationWidget({@required this.combination}) : super();
+  CombinationWidget({Key key, @required this.combination}) : super(key: key);
 
   @override
-  CombinationWidgetState createState() => CombinationWidgetState();
+  _CombinationWidgetState createState() => _CombinationWidgetState();
 }
 
-class CombinationWidgetState extends State<CombinationWidget> {
+class _CombinationWidgetState extends State<CombinationWidget> {
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +30,7 @@ class CombinationWidgetState extends State<CombinationWidget> {
             {
               return GestureDetector(
                 onTap: () => _modifyCode(position),
-                child: new PegItem(widget.combination[position]),
+                child: new PegItem(pegModel: widget.combination[position]),
               );
             }
         ),
@@ -45,7 +44,6 @@ class CombinationWidgetState extends State<CombinationWidget> {
     {
       Mastermind.modifyCode(widget.combination, position);
     });
-
   }
 
 }
