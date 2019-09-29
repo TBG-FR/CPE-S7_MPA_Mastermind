@@ -50,7 +50,7 @@ class Mastermind {
 //    _modifyCode(tries.last.tryCode, pegIndex);
 //  }
 
-  void modifyCode(Combination code, int pegIndex)
+  static void modifyCode(Combination code, int pegIndex)
   {
     code[pegIndex].color = Settings.getRandomColorDifferent(code[pegIndex].color);
   }
