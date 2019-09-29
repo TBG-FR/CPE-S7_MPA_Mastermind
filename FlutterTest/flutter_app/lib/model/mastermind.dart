@@ -1,136 +1,102 @@
 
-import 'package:flutter/material.dart';
+import 'dart:math';
+import 'dart:developer' as developer;
+import 'dart:ui';
+import 'combination.dart';
+import 'peg.key.dart';
+import 'settings.dart';
+import 'try.dart';
 
 class Mastermind {
 
   // TODO : Generalize (no more color but element (color, emoji, letter, ...) of a selected type
 
-  static final int codeLength = 4;
-  //final List<Color> availableColors  = [Colors.blue, Colors.red, Colors.green, Colors.yellow];
-  final List<Color> availableColors  = new List<Color>(codeLength);
-  List<CodePeg> secretCode = new List<CodePeg>(codeLength);
+  //static final List<Color> availableColors  = new List<Color>(codeLength);
+  Combination secretCode;// = new Combination();
+  List<Try> tries = new List<Try>();
 
-  Mastermind() {
-    availableColors[0] = Colors.blue;
-    availableColors[1] = Colors.red;
-    availableColors[2] = Colors.green;
-    availableColors[3] = Colors.yellow;
-
+  Mastermind()
+  {
+    this.generateCode();
   }
 
-  void editCode(int position, Color setColor) {
-
-    if(availableColors.contains(setColor))
-    {
-      if(secretCode.elementAt(position) == null)
-      {
-        secretCode[position] = new CodePeg.withColor(setColor);
-      }
-      else
-      {
-        secretCode.elementAt(position).color = setColor;
-      }
-    }
-    else { /* do nothing */ }
+  void editCode(int position, Color setColor)
+  {
+    secretCode.editPeg(position, setColor);
   }
 
-  // TODO : Return an Enum value (see below)
-  KeyPegTypeEnum/*int*/ compareCodePeg(int position, Color triedColor) {
-
-    if(secretCode.elementAt(position).color == triedColor) {
-      //return 1;
-      return KeyPegTypeEnum.WELL_PLACED;
-    }
-    else { // TODO : if secretCode.any([...])
-
-      bool codeHasColor = false;
-
-      for(CodePeg cp in secretCode) {
-        if(cp.color == triedColor) {
-          codeHasColor = true;
-        }
-      }
-
-      if(codeHasColor)
-      {
-        //return 0;
-        return KeyPegTypeEnum.WRONG_POSITION;
-      }
-      else
-      {
-        //return -1;
-        return KeyPegTypeEnum.WRONG_PEG;
-      }
-    }
-
+  void generateCode()
+  {
+    secretCode = new Combination.withRandomValues();
   }
 
-  List<KeyPeg> compareSecretCode(List<CodePeg> triedSecretCode) {
-
-    List<KeyPeg> result = List<KeyPeg>(codeLength);
-
-    for(int i=0; i<codeLength; i++)
-    {
-      result[i] = new KeyPeg(compareCodePeg(i, triedSecretCode.elementAt(i).color));
-    }
-
-    return result;
-
+  void newTry()
+  {
+    tries.add(new Try());
   }
 
-}
-
-abstract class Peg
-{
-  Color color;
-}
-
-class CodePeg extends Peg {
-
-  // TODO : Generalize (no more color but element (color, emoji, letter, ...) of a selected type
-
-  CodePeg() {
-    color = Colors.blue;
+  void checkLastTry()
+  {
+    tries.last.result = secretCode.compare(tries.last.tryCode);
   }
 
-  CodePeg.withColor(Color color) {
-    this.color = color;
+//  void modifySecretCodePeg(int pegIndex)
+//  {
+//    _modifyCode(secretCode, pegIndex);
+//  }
+//
+//  void modifyTryCodePeg(int pegIndex)
+//  {
+//    _modifyCode(tries.last.tryCode, pegIndex);
+//  }
+
+  void modifyCode(Combination code, int pegIndex)
+  {
+    code[pegIndex].color = Settings.getRandomColorDifferent(code[pegIndex].color);
   }
 
-}
+//  // TODO : Return an Enum value (see below)
+//  KeyPegTypeEnum/*int*/ compareCodePeg(int position, Color triedColor) {
+//
+//    if(secretCode.elementAt(position).color == triedColor) {
+//      //return 1;
+//      return KeyPegTypeEnum.WELL_PLACED;
+//    }
+//    else { // TODO : if secretCode.any([...])
+//
+//      bool codeHasColor = false;
+//
+//      for(CodePeg cp in secretCode) {
+//        if(cp.color == triedColor) {
+//          codeHasColor = true;
+//        }
+//      }
+//
+//      if(codeHasColor)
+//      {
+//        //return 0;
+//        return KeyPegTypeEnum.WRONG_POSITION;
+//      }
+//      else
+//      {
+//        //return -1;
+//        return KeyPegTypeEnum.WRONG_PEG;
+//      }
+//    }
+//
+//  }
 
-class KeyPeg extends Peg {
+//  List<KeyPeg> compareSecretCode(List<CodePeg> triedSecretCode) {
+//
+//    List<KeyPeg> result = List<KeyPeg>(Settings.codeLength);
+//
+//    for(int i=0; i<Settings.codeLength; i++)
+//    {
+//      result[i] = new KeyPeg(compareCodePeg(i, triedSecretCode.elementAt(i).color));
+//    }
+//
+//    return result;
+//
+//  }
 
-  KeyPegTypeEnum type;
-
-  KeyPeg(type) {
-    this.type = type;
-  }
-
-  // TODO : Move to "view", handle only type
-  @override
-  Color get color {
-
-    switch(type) {
-      case KeyPegTypeEnum.WELL_PLACED:
-        return Colors.black;
-        break;
-
-      case KeyPegTypeEnum.WRONG_POSITION:
-        return Colors.white;
-        break;
-
-      case KeyPegTypeEnum.WRONG_PEG:
-      default:
-        return Colors.grey;
-        break;
-    }
-  }
-
-}
-
-enum KeyPegTypeEnum {
-  WELL_PLACED,
-  WRONG_POSITION,
-  WRONG_PEG,
 }
