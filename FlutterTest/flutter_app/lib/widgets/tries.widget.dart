@@ -22,9 +22,7 @@ class _TriesWidgetState extends State<TriesWidget> {
 //  }
 
   /*
-
   // SINGLE ITEM
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -34,7 +32,6 @@ class _TriesWidgetState extends State<TriesWidget> {
       ),
     );
   }
-
 */
 
 
@@ -49,10 +46,10 @@ class _TriesWidgetState extends State<TriesWidget> {
       child: ListView.builder(
           itemCount: widget.mastermind.tries.length,
           shrinkWrap: true,
- //         padding: const EdgeInsets.all(1.0),
+          //         padding: const EdgeInsets.all(1.0),
           itemBuilder: (BuildContext context, int index) {
             return new TryWidget(
-                tryModel: widget.mastermind.tries.elementAt(index),
+              tryModel: widget.mastermind.tries.elementAt(index),
             );
           }
       ),

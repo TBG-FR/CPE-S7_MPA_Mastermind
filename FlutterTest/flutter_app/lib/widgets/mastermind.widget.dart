@@ -42,6 +42,7 @@ class _MastermindGameState extends State<MastermindGame> {
         children: <Widget>[
           Expanded(child: CombinationWidget(combination: widget.mastermind.secretCode),),
           Expanded(child: TriesWidget(mastermind: widget.mastermind),),
+
         ],
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

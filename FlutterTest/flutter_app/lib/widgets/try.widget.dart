@@ -18,14 +18,14 @@ class TryWidget extends StatelessWidget {
     return Row(
       children: <Widget>[
         Expanded(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 65,
-                child: CombinationWidget(combination: tryModel.tryCode),
-              )
-            ],
-          )
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: 65,
+                  child: CombinationWidget(combination: tryModel.tryCode),
+                )
+              ],
+            )
         ),
 //        IconButton(
 //          iconSize: 50,
