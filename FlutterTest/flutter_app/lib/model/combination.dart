@@ -7,16 +7,19 @@ import 'peg.code.dart';
 
 class Combination extends ListBase<CodePeg> {
 
+  static int countTry = 0;
   Combination()
   {
     for(int i=0; i<length; i++)
     {
-      this[i] = new CodePeg();
+      this[i] = new CodePeg();  //file peg.code
     }
+    countTry++;
   }
 
   Combination.withRandomValues()
   {
+    countTry = 0;
     for(int i=0; i<length; i++)
     {
       this[i] = new CodePeg.withRandomColor();
@@ -54,6 +57,9 @@ class Combination extends ListBase<CodePeg> {
 
   List<KeyPeg> compare(Combination tryCode)
   {
+    // TODO : Fix bug with countTry
+    print("Combinaison n° :" + countTry.toString() + "\n");
+    print("Liste des couleurs " + "\n");
     List<KeyPeg> result = List<KeyPeg>(Settings.codeLength);
 
     for(int i=0; i<Settings.codeLength; i++)
@@ -62,6 +68,7 @@ class Combination extends ListBase<CodePeg> {
 
       if(this.elementAt(i).color == tryCode.elementAt(i).color)
       {
+        print(i.toString() + " Bien placé ! ");
         cpResult = KeyPegTypeEnum.WELL_PLACED;
       }
       else
@@ -69,10 +76,14 @@ class Combination extends ListBase<CodePeg> {
         if(this.hasColor(tryCode.elementAt(i).color))
         {
           // TODO : Count (X times the color Y => can't return that every time)
+          print(i.toString() + " Mal placé ! ");
+
           cpResult = KeyPegTypeEnum.WRONG_POSITION;
         }
         else
         {
+          print(i.toString() + " Mauvais peg ! ");
+
           cpResult = KeyPegTypeEnum.WRONG_PEG;
         }
       }
@@ -108,6 +119,8 @@ class Combination extends ListBase<CodePeg> {
   void add(CodePeg value) => innerList.add(value);
 
   void addAll(Iterable<CodePeg> all) => innerList.addAll(all);
+
+
 
 
 }

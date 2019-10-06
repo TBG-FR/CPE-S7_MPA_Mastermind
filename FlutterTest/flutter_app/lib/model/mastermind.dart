@@ -1,6 +1,8 @@
 
 import 'dart:ui';
 import 'combination.dart';
+import 'peg.code.dart';
+import 'peg.key.dart';
 import 'settings.dart';
 import 'try.dart';
 
@@ -30,6 +32,7 @@ class Mastermind {
   void newTry()
   {
     tries.add(new Try());
+
   }
 
   void checkLastTry()
@@ -50,7 +53,7 @@ class Mastermind {
 
   static void modifyCode(Combination code, int pegIndex)
   {
-    code[pegIndex].color = Settings.getRandomColorDifferent(code[pegIndex].color);
+    code[pegIndex].color = Settings.getNextColor(code[pegIndex].color);
   }
 
 //  // TODO : Return an Enum value (see below)
@@ -83,18 +86,7 @@ class Mastermind {
 //    }
 //
 //  }
+/*
 
-//  List<KeyPeg> compareSecretCode(List<CodePeg> triedSecretCode) {
-//
-//    List<KeyPeg> result = List<KeyPeg>(Settings.codeLength);
-//
-//    for(int i=0; i<Settings.codeLength; i++)
-//    {
-//      result[i] = new KeyPeg(compareCodePeg(i, triedSecretCode.elementAt(i).color));
-//    }
-//
-//    return result;
-//
-//  }
-
+*/
 }

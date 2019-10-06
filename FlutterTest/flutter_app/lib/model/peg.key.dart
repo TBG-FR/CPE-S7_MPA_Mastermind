@@ -20,7 +20,6 @@ class KeyPeg extends Peg {
   // TODO : Move to "view", handle only type
   @override
   Color get color {
-
     switch(type) {
       case KeyPegTypeEnum.WELL_PLACED:
         return Colors.black;

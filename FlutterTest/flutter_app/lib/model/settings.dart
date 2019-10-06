@@ -28,4 +28,18 @@ class Settings {
     return returnColor;
   }
 
+  static Color getNextColor(Color color) {
+    Color returnColor;
+    int i;
+    returnColor = availableColors[0];
+    for(i=0;i<(codeLength-1);i++)
+      {
+        if(color == availableColors[i]) {
+          returnColor = availableColors[i+1];
+          break;
+        }
+      }
+    return returnColor;
+  }
+
 }
