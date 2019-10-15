@@ -19,23 +19,42 @@ class _CombinationWidgetState extends State<CombinationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListView.builder(
-            shrinkWrap: true,
-            itemCount: Settings.codeLength,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, position)
-            {
-              return GestureDetector(
-                onTap: () => _modifyCode(position),
-                child: new PegItem(pegModel: widget.combination[position]),
-              );
-            }
-        ),
-      ],
+
+    //return IconButton(icon: new Icon(Icons.favorite_border, size: 45,),);
+
+    return ListView.builder(
+              shrinkWrap: true,
+              itemCount: Settings.codeLength,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, position)
+              {
+                return GestureDetector(
+                  onTap: () => _modifyCode(position),
+                  child: new PegItem(pegModel: widget.combination[position]),
+                );
+              }
     );
+
+//    return Row(
+//      mainAxisSize: MainAxisSize.min,
+//      children: [
+//        Expanded(
+//          child: IconButton(icon: new Icon(Icons.favorite_border, size: 45,),),
+////          child: ListView.builder(
+////              shrinkWrap: true,
+////              itemCount: Settings.codeLength,
+////              scrollDirection: Axis.horizontal,
+////              itemBuilder: (context, position)
+////              {
+////                return GestureDetector(
+////                  onTap: () => _modifyCode(position),
+////                  child: new PegItem(pegModel: widget.combination[position]),
+////                );
+////              }
+////          ),
+//        )
+//      ],
+//    );
   }
 
   void _modifyCode(int position)

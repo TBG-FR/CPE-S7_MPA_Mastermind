@@ -23,19 +23,51 @@ class _MastermindGameState extends State<MastermindGame> {
         title: Text('Mastermind'),
 //        actions: <Widget>
 //        [
-//          IconButton
-//            (
-//            icon: Icon(Icons.list),
-//            onPressed: _pushSaved,
+//          IconButton(
+//            icon: Icon(Icons.check_circle),
+//            color: Colors.green,
+//            iconSize: 45,
+//            onPressed: () => widget.mastermind.checkLastTry(),
+//          ),
+//          IconButton(
+//            icon: Icon(Icons.cancel),
+//            color: Colors.red,
+//            iconSize: 45,
+//            //onPressed: () => widget.mastermind = new Mastermind(),
 //          ),
 //        ],
       ),
       body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Expanded(child: CombinationWidget(combination: widget.mastermind.secretCode),),
           Expanded(child: TriesWidget(mastermind: widget.mastermind),),
         ],
       ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () { /* TODO CANCEL (GO BACK) */ },
+              backgroundColor: Colors.white,
+              child: Icon(Icons.cancel, color: Colors.red, size: 50,),
+            ),
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () { /* TODO RETRY ? */ },
+              backgroundColor: Colors.white,
+              child: Icon(Icons.refresh, color: Colors.blue, size: 50,),
+            ),
+            FloatingActionButton(
+              heroTag: null,
+              onPressed: () { setState(() { widget.mastermind.checkLastTry(); }); },
+              backgroundColor: Colors.white,
+              child: Icon(Icons.check_circle, color: Colors.green, size: 50,),
+            ),
+          ],
+        ),
     );
   }
 }
