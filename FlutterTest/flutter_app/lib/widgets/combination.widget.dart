@@ -19,21 +19,39 @@ class _CombinationWidgetState extends State<CombinationWidget> {
 
   @override
   Widget build(BuildContext context) {
+    
+    return MediaQuery.removePadding(
 
-    //return IconButton(icon: new Icon(Icons.favorite_border, size: 45,),);
+        context: context,
+        removeTop: true,
 
-    return ListView.builder(
-              shrinkWrap: true,
-              itemCount: Settings.codeLength,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, position)
-              {
-                return GestureDetector(
-                  onTap: () => _modifyCode(position),
-                  child: new PegItem(pegModel: widget.combination[position]),
-                );
-              }
+        child: ListView.builder(
+            shrinkWrap: true,
+            itemCount: Settings.codeLength,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, position)
+            {
+              return GestureDetector(
+                onTap: () => _modifyCode(position),
+                child: new PegItem(pegModel: widget.combination[position]),
+              );
+            }
+        )
     );
+
+//    return ListView.builder(
+//              shrinkWrap: true,
+//              padding: EdgeInsets.all(0),
+//              itemCount: Settings.codeLength,
+//              scrollDirection: Axis.horizontal,
+//              itemBuilder: (context, position)
+//              {
+//                return GestureDetector(
+//                  onTap: () => _modifyCode(position),
+//                  child: new PegItem(pegModel: widget.combination[position]),
+//                );
+//              }
+//    );
 
 //    return Row(
 //      mainAxisSize: MainAxisSize.min,
