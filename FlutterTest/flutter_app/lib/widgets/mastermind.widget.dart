@@ -53,13 +53,13 @@ class _MastermindGameState extends State<MastermindGame> {
           children: <Widget>[
             FloatingActionButton(
               heroTag: null,
-              onPressed: () { /* TODO CANCEL (GO BACK) */ },
+              onPressed: () {  setState (() { widget.mastermind.cancelGame(context); }); },
               backgroundColor: Colors.white,
               child: Icon(Icons.cancel, color: Colors.red, size: 50,),
             ),
             FloatingActionButton(
               heroTag: null,
-              onPressed: () { /* TODO RETRY ? */ },
+              onPressed: () {  setState (() { widget.mastermind.resetGame(); }); },
               backgroundColor: Colors.white,
               child: Icon(Icons.refresh, color: Colors.blue, size: 50,),
             ),

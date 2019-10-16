@@ -1,6 +1,7 @@
 
 import 'dart:ui';
 import 'package:flutter_app/model/enums/result.enum.dart';
+import 'package:flutter/material.dart';
 
 import 'combination.dart';
 import 'peg.code.dart';
@@ -8,6 +9,7 @@ import 'peg.key.dart';
 import 'result.model.dart';
 import 'settings.dart';
 import 'try.dart';
+import 'dialog.dart';
 
 class Mastermind {
 
@@ -16,6 +18,8 @@ class Mastermind {
   //static final List<Color> availableColors  = new List<Color>(codeLength);
   Combination secretCode;// = new Combination();
   List<Try> tries;
+
+  Dialogue dialog = new Dialogue();
 
   Mastermind()
   {
@@ -31,6 +35,19 @@ class Mastermind {
   void generateCode()
   {
     secretCode = new Combination.withRandomValues();
+  }
+
+  void resetGame()
+  {
+    this.tries = new List<Try>();
+    this.generateCode();
+    tries.add(new Try());
+  }
+
+  void cancelGame(BuildContext context)
+  {
+    /*TODO*/
+    dialog.confirmDialog(context,"T'es Nul ?","Tu souhaites vraiment abandonner ?!?");
   }
 
   void newTry()
