@@ -1,10 +1,12 @@
 
 import 'dart:ui';
+import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter/material.dart';
 
 import 'combination.dart';
 import 'peg.code.dart';
 import 'peg.key.dart';
+import 'result.model.dart';
 import 'settings.dart';
 import 'try.dart';
 import 'dialog.dart';
@@ -54,11 +56,40 @@ class Mastermind {
 
   }
 
-  void checkLastTry()
+  Result checkLastTry()
   {
+    bool won = true;
     tries.last.result = secretCode.compare(tries.last.tryCode);
-    print(tries.last.result);
-    newTry();
+
+    for(KeyPeg kp in tries.last.result)
+    {
+      if(kp.type != KeyPegTypeEnum.WELL_PLACED)
+      {
+        won = false;
+      }
+    }
+
+    if(won)
+    {
+      return this._endGame(ResultEnum.won);
+    }
+    else if(tries.length > Settings.triesAllowed)
+    {
+      return this._endGame(ResultEnum.lost);
+    }
+    else
+    {
+      this.newTry();
+      return null;
+    }
+  }
+
+  Result _endGame(ResultEnum result) {
+    return new Result.finishedGame(
+        this.secretCode,
+        this.tries.length,
+        result
+    );
   }
 
 //  void modifySecretCodePeg(int pegIndex)

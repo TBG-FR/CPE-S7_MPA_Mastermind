@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/result.model.dart';
+import 'package:flutter_app/pages/result.page.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
 import 'package:flutter_app/widgets/tries.widget.dart';
 import '../model/mastermind.dart';
@@ -63,7 +65,7 @@ class _MastermindGameState extends State<MastermindGame> {
             ),
             FloatingActionButton(
               heroTag: null,
-              onPressed: () { setState(() { widget.mastermind.checkLastTry(); }); },
+              onPressed: () { _checkLastTryAndGameStatus(); },
               backgroundColor: Colors.white,
               child: Icon(Icons.check_circle, color: Colors.green, size: 50,),
             ),
@@ -71,4 +73,19 @@ class _MastermindGameState extends State<MastermindGame> {
         ),
     );
   }
+
+  void _checkLastTryAndGameStatus() {
+
+    Result gameResult;
+
+    setState(() { gameResult = widget.mastermind.checkLastTry(); });
+
+    if(gameResult != null)
+    {
+      Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) => new ResultPage(result: gameResult)));
+    }
+
+  }
+
 }

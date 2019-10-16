@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class Settings {
 
   static final int codeLength = 4;
+  static final int triesAllowed = 5;
   static final List<Color> availableColors  = [Colors.blue, Colors.red, Colors.green, Colors.yellow];
   static final Color defaultColor = Colors.blueGrey;
   static final Random random = new Random();
