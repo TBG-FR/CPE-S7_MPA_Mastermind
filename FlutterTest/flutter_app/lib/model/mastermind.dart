@@ -39,6 +39,7 @@ class Mastermind {
   void checkLastTry()
   {
     tries.last.result = secretCode.compare(tries.last.tryCode);
+    print(tries.last.result);
     newTry();
   }
 
