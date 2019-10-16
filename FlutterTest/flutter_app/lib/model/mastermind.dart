@@ -12,10 +12,11 @@ class Mastermind {
 
   //static final List<Color> availableColors  = new List<Color>(codeLength);
   Combination secretCode;// = new Combination();
-  List<Try> tries = new List<Try>();
+  List<Try> tries;
 
   Mastermind()
   {
+    this.tries = new List<Try>();
     this.generateCode();
   }
 
