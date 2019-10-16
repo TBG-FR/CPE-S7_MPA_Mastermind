@@ -19,8 +19,6 @@ class Mastermind {
   Combination secretCode;// = new Combination();
   List<Try> tries;
 
-  Dialogue dialog = new Dialogue();
-
   Mastermind()
   {
     this.tries = new List<Try>();
@@ -46,8 +44,7 @@ class Mastermind {
 
   void cancelGame(BuildContext context)
   {
-    /*TODO*/
-    dialog.confirmDialog(context,"T'es Nul ?","Tu souhaites vraiment abandonner ?!?");
+    Result resultGame = this.endGame(ResultEnum.aborted);
   }
 
   void newTry()
@@ -71,11 +68,11 @@ class Mastermind {
 
     if(won)
     {
-      return this._endGame(ResultEnum.won);
+      return this.endGame(ResultEnum.won);
     }
     else if(tries.length > Settings.triesAllowed)
     {
-      return this._endGame(ResultEnum.lost);
+      return this.endGame(ResultEnum.lost);
     }
     else
     {
@@ -84,7 +81,7 @@ class Mastermind {
     }
   }
 
-  Result _endGame(ResultEnum result) {
+  Result endGame(ResultEnum result) {
     return new Result.finishedGame(
         this.secretCode,
         this.tries.length,

@@ -91,7 +91,10 @@ class _ResultPageState extends State<ResultPage> {
 
   Text _textFromTries(int tries)
   {
-    return new Text("It took you $tries tries",
+    
+    // TODO : Put "It took you" X tries or "You played" X tries depending on the result
+
+    return new Text("You played $tries tries",
       textAlign: TextAlign.center,
       style: TextStyle(
         fontSize: 25,

@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/dialog.dart';
+import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/pages/result.page.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
@@ -53,7 +55,7 @@ class _MastermindGameState extends State<MastermindGame> {
           children: <Widget>[
             FloatingActionButton(
               heroTag: null,
-              onPressed: () {  setState (() { widget.mastermind.cancelGame(context); }); },
+              onPressed: () {  setState (() { _cancelGame(); }); },
               backgroundColor: Colors.white,
               child: Icon(Icons.cancel, color: Colors.red, size: 50,),
             ),
@@ -87,5 +89,28 @@ class _MastermindGameState extends State<MastermindGame> {
     }
 
   }
+
+  void _cancelGame()
+  {
+    InformationDialog.display(context, "Bah alors, on est nul ?", "Tu souhaites vraiment abandonner ?", widget.mastermind);
+
+//    InformationDialog.display(context,
+//        "T'es Nul ?",
+//        "Tu souhaites vraiment abandonner ?!?",
+//            () => (bool isYes, BuildContext context)
+//        {
+//
+//        }
+//        );
+  }
+
+//  void cancelGameCode(bool isYes, BuildContext context)
+//  {
+//    if (isYes){
+//    Navigator.of(context).push(new MaterialPageRoute(
+//        builder: (BuildContext context) => new ResultPage(result: widget.mastermind.endGame(ResultEnum.aborted))));
+//
+//  }
+//  }
 
 }
