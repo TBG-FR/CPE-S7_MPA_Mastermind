@@ -2,7 +2,6 @@
 
 import 'package:flutter/material.dart';
 import 'menu.home.dart';
-import 'menu.launch.dart';
 
 void main() => runApp(MastermindApp());
 

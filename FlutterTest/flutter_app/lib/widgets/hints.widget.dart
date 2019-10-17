@@ -1,14 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/mastermind.dart';
-import 'package:flutter_app/model/peg.key.dart';
-import 'package:flutter_app/model/settings.dart';
+import 'package:flutter_app/model/peg-key.model.dart';
 import 'keypeg.widget.dart';
-import 'peg.widget.dart';
 
 class HintsWidget extends StatefulWidget {
 
-  final List<KeyPeg> result;
+  final List<KeyPegModel> result;
 
   HintsWidget({Key key, @required this.result}) : super(key: key);
 

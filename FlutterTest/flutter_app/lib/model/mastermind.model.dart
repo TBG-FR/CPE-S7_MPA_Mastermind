@@ -3,25 +3,24 @@ import 'dart:ui';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter/material.dart';
 
-import 'combination.dart';
-import 'peg.code.dart';
-import 'peg.key.dart';
+import 'combination.model.dart';
+import 'enums/peg-key-type.enum.dart';
+import 'peg-key.model.dart';
 import 'result.model.dart';
-import 'settings.dart';
-import 'try.dart';
-import 'dialog.dart';
+import '../utils/settings.utils.dart';
+import 'try.model.dart';
 
-class Mastermind {
+class MastermindModel {
 
   // TODO : Generalize (no more color but element (color, emoji, letter, ...) of a selected type
 
   //static final List<Color> availableColors  = new List<Color>(codeLength);
-  Combination secretCode;// = new Combination();
-  List<Try> tries;
+  CombinationModel secretCode;// = new Combination();
+  List<TryModel> tries;
 
-  Mastermind()
+  MastermindModel()
   {
-    this.tries = new List<Try>();
+    this.tries = new List<TryModel>();
     this.generateCode();
   }
 
@@ -32,33 +31,28 @@ class Mastermind {
 
   void generateCode()
   {
-    secretCode = new Combination.withRandomValues();
+    secretCode = new CombinationModel.withRandomValues();
   }
 
   void resetGame()
   {
-    this.tries = new List<Try>();
+    this.tries = new List<TryModel>();
     this.generateCode();
-    tries.add(new Try());
-  }
-
-  void cancelGame(BuildContext context)
-  {
-    Result resultGame = this.endGame(ResultEnum.aborted);
+    tries.add(new TryModel());
   }
 
   void newTry()
   {
-    tries.add(new Try());
+    tries.add(new TryModel());
 
   }
 
-  Result checkLastTry()
+  ResultModel checkLastTry()
   {
     bool won = true;
     tries.last.result = secretCode.compare(tries.last.tryCode);
 
-    for(KeyPeg kp in tries.last.result)
+    for(KeyPegModel kp in tries.last.result)
     {
       if(kp.type != KeyPegTypeEnum.WELL_PLACED)
       {
@@ -81,8 +75,9 @@ class Mastermind {
     }
   }
 
-  Result endGame(ResultEnum result) {
-    return new Result.finishedGame(
+  ResultModel endGame(ResultEnum result)
+  {
+    return new ResultModel.finishedGame(
         this.secretCode,
         this.tries.length,
         result
@@ -99,7 +94,7 @@ class Mastermind {
 //    _modifyCode(tries.last.tryCode, pegIndex);
 //  }
 
-  static void modifyCode(Combination code, int pegIndex)
+  static void modifyCode(CombinationModel code, int pegIndex)
   {
     code[pegIndex].color = Settings.getNextColor(code[pegIndex].color);
   }

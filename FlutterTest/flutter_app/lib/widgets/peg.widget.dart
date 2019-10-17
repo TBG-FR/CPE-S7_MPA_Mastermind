@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/peg.dart';
+import 'package:flutter_app/model/peg.model.dart';
 
 class PegItem extends StatelessWidget {
 //Apparence des pieces visibles par le joueur.
-  final Peg pegModel;
+  final PegModel pegModel;
 
   PegItem({Key key, @required this.pegModel}) : super(key: key);
 

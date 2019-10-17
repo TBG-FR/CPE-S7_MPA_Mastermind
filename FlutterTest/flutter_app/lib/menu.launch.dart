@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'model/mastermind.dart';
-import 'widgets/mastermind.widget.dart';
+import 'model/mastermind.model.dart';
+import 'pages/mastermind.page.dart';
 
 class LaunchMenu extends StatefulWidget {
   @override
@@ -54,10 +54,10 @@ class LaunchMenuState extends State<LaunchMenu> {
 
   void playGame() {
 
-    Mastermind mastermind = new Mastermind();
+    MastermindModel mastermind = new MastermindModel();
     mastermind.newTry();
 
-    Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MastermindGame(mastermind: mastermind,)));
+    Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new MastermindPage(mastermind: mastermind,)));
   }
 
   void seeResults() {

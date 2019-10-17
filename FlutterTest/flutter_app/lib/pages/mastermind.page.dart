@@ -1,24 +1,24 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/dialog.dart';
+import 'package:flutter_app/widgets/dialog.widget.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/pages/result.page.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
 import 'package:flutter_app/widgets/tries.widget.dart';
-import '../model/mastermind.dart';
+import '../model/mastermind.model.dart';
 
-class MastermindGame extends StatefulWidget {
+class MastermindPage extends StatefulWidget {
 
-  final Mastermind mastermind;// = new Mastermind();
+  final MastermindModel mastermind;// = new Mastermind();
 
-  MastermindGame({Key key, @required this.mastermind}) : super(key: key);
+  MastermindPage({Key key, @required this.mastermind}) : super(key: key);
 
   @override
-  _MastermindGameState createState() => _MastermindGameState();
+  _MastermindPageState createState() => _MastermindPageState();
 }
 
-class _MastermindGameState extends State<MastermindGame> {
+class _MastermindPageState extends State<MastermindPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +55,7 @@ class _MastermindGameState extends State<MastermindGame> {
           children: <Widget>[
             FloatingActionButton(
               heroTag: null,
-              onPressed: () {  setState (() { _cancelGame(); }); },
+              onPressed: () {  setState (() { _cancelGameDialog(); }); },
               backgroundColor: Colors.white,
               child: Icon(Icons.cancel, color: Colors.red, size: 50,),
             ),
@@ -78,7 +78,7 @@ class _MastermindGameState extends State<MastermindGame> {
 
   void _checkLastTryAndGameStatus() {
 
-    Result gameResult;
+    ResultModel gameResult;
 
     setState(() { gameResult = widget.mastermind.checkLastTry(); });
 
@@ -90,27 +90,35 @@ class _MastermindGameState extends State<MastermindGame> {
 
   }
 
-  void _cancelGame()
+  void _cancelGameDialog()
   {
-    InformationDialog.display(context, "Bah alors, on est nul ?", "Tu souhaites vraiment abandonner ?", widget.mastermind);
+//    DialogWidget.display(context,
+//        "Bah alors, on est nul ?",
+//        "Tu souhaites vraiment abandonner ?",
+//        _cancelGameAction);
 
-//    InformationDialog.display(context,
-//        "T'es Nul ?",
-//        "Tu souhaites vraiment abandonner ?!?",
-//            () => (bool isYes, BuildContext context)
-//        {
-//
-//        }
-//        );
+    DialogWidget.displayFull(context,
+      new Map.fromEntries
+        (
+            [
+              new MapEntry(DialogWidget.labelTitle, "Abandonner"),
+              new MapEntry(DialogWidget.labelText, "Voulez-vous vraiment abandonner ?"),
+              new MapEntry(DialogWidget.labelYes, "Oui, c'est trop dur !"),
+              new MapEntry(DialogWidget.labelCancel, "Non, je vais gagner !"),
+            ]
+        ),
+        _cancelGameAction);
   }
 
-//  void cancelGameCode(bool isYes, BuildContext context)
-//  {
-//    if (isYes){
-//    Navigator.of(context).push(new MaterialPageRoute(
-//        builder: (BuildContext context) => new ResultPage(result: widget.mastermind.endGame(ResultEnum.aborted))));
-//
-//  }
-//  }
+  void _cancelGameAction(bool userResponse) {
+
+    Navigator.pop(context); // close dialog
+
+    if (userResponse == true)
+    {
+      Navigator.of(context).push(new MaterialPageRoute(
+          builder: (BuildContext context) => new ResultPage(result: widget.mastermind.endGame(ResultEnum.aborted))));
+    }
+  }
 
 }

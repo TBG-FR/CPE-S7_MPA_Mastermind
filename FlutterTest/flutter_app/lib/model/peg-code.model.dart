@@ -1,23 +1,23 @@
 
 
 import 'dart:ui';
-import 'peg.dart';
-import 'settings.dart';
+import 'peg.model.dart';
+import '../utils/settings.utils.dart';
 
-class CodePeg extends Peg {
+class CodePegModel extends PegModel {
 
   // TODO : Generalize (no more color but element (color, emoji, letter, ...) of a selected type
 
-  CodePeg() {
+  CodePegModel() {
     this.color = Settings.defaultColor;
   }
 
-  CodePeg.withColor(Color color)
+  CodePegModel.withColor(Color color)
   {
     this.color = color;
   }
 
-  CodePeg.withRandomColor()
+  CodePegModel.withRandomColor()
   {
     this.color = Settings.getRandomColor();
   }

@@ -3,12 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
-import 'package:flutter_app/widgets/tries.widget.dart';
-import '../model/mastermind.dart';
 
 class ResultPage extends StatefulWidget {
 
-  final Result result;
+  final ResultModel result;
 
   ResultPage({Key key, @required this.result}) : super(key: key);
 

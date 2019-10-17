@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/peg.dart';
+import 'package:flutter_app/model/peg.model.dart';
 
 class KeyPegItem extends StatelessWidget {
 //Apparence des pieces d'incides visibles par les joueurs
-  final Peg pegModel;
+  final PegModel pegModel;
 
   KeyPegItem({Key key, @required this.pegModel}) : super(key: key);
 

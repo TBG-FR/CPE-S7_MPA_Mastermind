@@ -1,7 +1,7 @@
 
 import 'dart:ui';
 
-abstract class Peg
+abstract class PegModel
 {
   Color color;
 }

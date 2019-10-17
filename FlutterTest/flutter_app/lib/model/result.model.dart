@@ -1,36 +1,30 @@
 
-import 'dart:ui';
-import 'package:flutter_app/model/enums/result.enum.dart';
+import 'enums/result.enum.dart';
+import 'combination.model.dart';
 
-import 'combination.dart';
-import 'peg.code.dart';
-import 'peg.key.dart';
-import 'settings.dart';
-import 'try.dart';
-
-class Result {
+class ResultModel {
 
   //static final List<Color> availableColors  = new List<Color>(codeLength);
-  Combination secretCode;// = new Combination();
+  CombinationModel secretCode;// = new Combination();
   int numberOfTries;
   ResultEnum gameResult;
 
-  Result(Combination code, int tries)
+  ResultModel(CombinationModel code, int tries)
   {
     this.secretCode = code;
     this.numberOfTries = tries;
   }
 
-  factory Result.abortedGame(Combination code, int tries)
+  factory ResultModel.abortedGame(CombinationModel code, int tries)
   {
-    Result resultInstance = Result(code, tries);
+    ResultModel resultInstance = ResultModel(code, tries - 1);
     resultInstance.gameResult = ResultEnum.aborted;
     return resultInstance;
   }
 
-  factory Result.finishedGame(Combination code, int tries, ResultEnum result)
+  factory ResultModel.finishedGame(CombinationModel code, int tries, ResultEnum result)
   {
-    Result resultInstance = Result(code, tries);
+    ResultModel resultInstance = ResultModel(code, tries);
     resultInstance.gameResult = result;
     return resultInstance;
   }

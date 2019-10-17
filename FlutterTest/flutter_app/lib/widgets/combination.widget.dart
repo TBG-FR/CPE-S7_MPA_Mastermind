@@ -1,13 +1,13 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/combination.dart';
-import 'package:flutter_app/model/mastermind.dart';
-import 'package:flutter_app/model/settings.dart';
+import 'package:flutter_app/model/combination.model.dart';
+import 'package:flutter_app/model/mastermind.model.dart';
+import 'package:flutter_app/utils/settings.utils.dart';
 import 'peg.widget.dart';
 
 class CombinationWidget extends StatefulWidget {
 
-  final Combination combination;
+  final CombinationModel combination;
 
   CombinationWidget({Key key, @required this.combination}) : super(key: key);
 
@@ -79,7 +79,7 @@ class _CombinationWidgetState extends State<CombinationWidget> {
   {
     setState(()
     {
-      Mastermind.modifyCode(widget.combination, position);
+      MastermindModel.modifyCode(widget.combination, position);
     });
   }
 

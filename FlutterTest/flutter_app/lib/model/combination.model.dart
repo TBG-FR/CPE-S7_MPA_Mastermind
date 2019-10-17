@@ -1,28 +1,29 @@
 
 import 'dart:collection';
 import 'dart:ui';
-import 'package:flutter_app/model/peg.key.dart';
-import 'settings.dart';
-import 'peg.code.dart';
+import 'package:flutter_app/model/peg-key.model.dart';
+import '../utils/settings.utils.dart';
+import 'enums/peg-key-type.enum.dart';
+import 'peg-code.model.dart';
 
-class Combination extends ListBase<CodePeg> {
+class CombinationModel extends ListBase<CodePegModel> {
 
   static int countTry = 0;
-  Combination()
+  CombinationModel()
   {
     for(int i=0; i<length; i++)
     {
-      this[i] = new CodePeg();  //file peg.code
+      this[i] = new CodePegModel();  //file peg.code
     }
     countTry++;
   }
 
-  Combination.withRandomValues()
+  CombinationModel.withRandomValues()
   {
     countTry = 0;
     for(int i=0; i<length; i++)
     {
-      this[i] = new CodePeg.withRandomColor();
+      this[i] = new CodePegModel.withRandomColor();
     }
   }
 
@@ -32,7 +33,7 @@ class Combination extends ListBase<CodePeg> {
     {
       if(this.elementAt(position) == null)
       {
-        this[position] = new CodePeg.withColor(setColor);
+        this[position] = new CodePegModel.withColor(setColor);
       }
       else
       {
@@ -45,7 +46,7 @@ class Combination extends ListBase<CodePeg> {
   // TODO : Count (X times the color Y => can't return that every time)
   bool hasColor(Color color)
   {
-    for(CodePeg cp in this)
+    for(CodePegModel cp in this)
     {
       if(cp.color == color)
       {
@@ -55,12 +56,12 @@ class Combination extends ListBase<CodePeg> {
     return false;
   }
 
-  List<KeyPeg> compare(Combination tryCode)
+  List<KeyPegModel> compare(CombinationModel tryCode)
   {
     // TODO : Fix bug with countTry
     print("Combinaison n° :" + countTry.toString() + "\n");
     print("Liste des couleurs " + "\n");
-    List<KeyPeg> result = List<KeyPeg>(Settings.codeLength);
+    List<KeyPegModel> result = List<KeyPegModel>(Settings.codeLength);
 
     for(int i=0; i<Settings.codeLength; i++)
     {
@@ -88,7 +89,7 @@ class Combination extends ListBase<CodePeg> {
         }
       }
 
-      result[i] = new KeyPeg(cpResult);
+      result[i] = new KeyPegModel(cpResult);
     }
 
     return result;
@@ -107,18 +108,18 @@ class Combination extends ListBase<CodePeg> {
     //innerList.length = length;
   }
 
-  void operator[]=(int index, CodePeg value) {
+  void operator[]=(int index, CodePegModel value) {
     innerList[index] = value;
   }
 
-  CodePeg operator [](int index) => innerList[index];
+  CodePegModel operator [](int index) => innerList[index];
 
   // Though not strictly necessary, for performance reasons
   // you should implement add and addAll.
 
-  void add(CodePeg value) => innerList.add(value);
+  void add(CodePegModel value) => innerList.add(value);
 
-  void addAll(Iterable<CodePeg> all) => innerList.addAll(all);
+  void addAll(Iterable<CodePegModel> all) => innerList.addAll(all);
 
 
 

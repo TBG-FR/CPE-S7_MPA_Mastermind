@@ -1,18 +1,13 @@
 
-import 'peg.dart';
+import 'enums/peg-key-type.enum.dart';
+import 'peg.model.dart';
 import 'package:flutter/material.dart';
 
-enum KeyPegTypeEnum {
-  WELL_PLACED,
-  WRONG_POSITION,
-  WRONG_PEG,
-}
-
-class KeyPeg extends Peg {
+class KeyPegModel extends PegModel {
 
   KeyPegTypeEnum type;
 
-  KeyPeg(type)
+  KeyPegModel(type)
   {
     this.type = type;
   }

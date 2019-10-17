@@ -1,11 +1,11 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/mastermind.dart';
+import 'package:flutter_app/model/mastermind.model.dart';
 import 'try.widget.dart';
 
 class TriesWidget extends StatefulWidget {
 
-  final Mastermind mastermind;
+  final MastermindModel mastermind;
 
   TriesWidget({Key key, @required this.mastermind}) : super(key: key);
 
@@ -13,32 +13,9 @@ class TriesWidget extends StatefulWidget {
   _TriesWidgetState createState() => _TriesWidgetState();
 }
 
-class _TriesWidgetState extends State<TriesWidget> {
+class _TriesWidgetState extends State<TriesWidget>
+{
 
-//  void _handleButtonPressed(bool newValue) {
-//    setState(() {
-//      widget.mastermind.checkLastTry();
-//    });
-//  }
-
-  /*
-  // SINGLE ITEM
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: TryWidget(
-          tryModel: widget.mastermind.tries.last,
-          onChanged: _handleButtonPressed
-      ),
-    );
-  }
-*/
-
-
-
-  // MULTIPLE ITEMS
-
-/**/
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,36 +32,5 @@ class _TriesWidgetState extends State<TriesWidget> {
       ),
     );
   }
-/**/
-
-
-/*
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Expanded(
-          child: TryWidget(
-              tryModel: widget.mastermind.tries[0],
-              onChanged: _handleButtonPressed
-          ),
-        ),
-        Expanded(
-          child: TryWidget(
-              tryModel: widget.mastermind.tries[1],
-              onChanged: _handleButtonPressed
-          ),
-        ),
-        Expanded(
-          child: TryWidget(
-              tryModel: widget.mastermind.tries[2],
-              onChanged: _handleButtonPressed
-          ),
-        ),
-      ],
-    );
-  }
-*/
-
 
 }
