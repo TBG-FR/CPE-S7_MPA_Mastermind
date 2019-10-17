@@ -92,10 +92,6 @@ class _MastermindPageState extends State<MastermindPage> {
 
   void _cancelGameDialog()
   {
-//    DialogWidget.display(context,
-//        "Bah alors, on est nul ?",
-//        "Tu souhaites vraiment abandonner ?",
-//        _cancelGameAction);
 
     DialogWidget.displayFull(context,
       new Map.fromEntries

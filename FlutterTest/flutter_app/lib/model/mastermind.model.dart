@@ -77,11 +77,21 @@ class MastermindModel {
 
   ResultModel endGame(ResultEnum result)
   {
-    return new ResultModel.finishedGame(
-        this.secretCode,
-        this.tries.length,
-        result
-    );
+    if(result == ResultEnum.aborted)
+    {
+      return new ResultModel.abortedGame(
+          this.secretCode,
+          this.tries.length
+      );
+    }
+    else
+    {
+      return new ResultModel.finishedGame(
+          this.secretCode,
+          this.tries.length,
+          result
+      );
+    }
   }
 
 //  void modifySecretCodePeg(int pegIndex)
