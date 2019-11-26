@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/pages/credits.page.dart';
 import 'menu.launch.dart';
 
 class HomeMenu extends StatefulWidget {
@@ -32,7 +33,7 @@ class HomeMenuState extends State<HomeMenu> {
                   children: <Widget>[
                     RaisedButton(
                       onPressed: () { launchGame(); },
-                      child: Text("Jouer"),
+                      child: Text("Play"),
                     ),
                     RaisedButton(
                       onPressed: () { seeResults(); },
@@ -40,7 +41,7 @@ class HomeMenuState extends State<HomeMenu> {
                     ),
                     RaisedButton(
                       onPressed: () { seeCredits(); },
-                      child: Text("Crédits"),
+                      child: Text("Credits"),
                     ),
                   ],
                 ),
@@ -51,7 +52,8 @@ class HomeMenuState extends State<HomeMenu> {
     );
   }
 
-  void launchGame() {
+  void launchGame()
+  {
     Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new LaunchMenu()));
   }
 
@@ -59,8 +61,9 @@ class HomeMenuState extends State<HomeMenu> {
 
   }
 
-  void seeCredits() {
-
+  void seeCredits()
+  {
+    Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new CreditsPage()));
   }
 
 }
