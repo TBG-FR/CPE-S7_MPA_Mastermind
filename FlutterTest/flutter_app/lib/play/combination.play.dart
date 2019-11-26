@@ -26,7 +26,7 @@ class _CombinationPlayState extends State<CombinationPlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mastermind'),
+        title: Text('Play - Player 1'),
 //        actions: <Widget>
 //        [
 //          IconButton(
@@ -48,7 +48,7 @@ class _CombinationPlayState extends State<CombinationPlay> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>
         [
-          Text('Player 1', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          //Text('Player 1', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
           Text('Define the secret combination !', style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
           Expanded(child: CombinationWidget(combination: widget.mastermind.secretCode, pegSize: 45,)),
         ],

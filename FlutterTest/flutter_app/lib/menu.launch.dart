@@ -20,27 +20,23 @@ class LaunchMenuState extends State<LaunchMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //title: Text('Startup Name Gen\''),
+          title: Text('Configuration du Jeu'),
         ),
         body: Center(
           child: Column(
             children: <Widget>[
-              Text(
-                "Mastermind",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+//              Text(
+//                "Mastermind",
+//                style: TextStyle(
+//                  fontSize: 18.0,
+//                  fontWeight: FontWeight.bold,
+//                ),
+//              ),
               IntrinsicWidth(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
-                    RaisedButton(
-                      onPressed: () { playGame(); },
-                      child: Text("Start"),
-                    ),
                     Text("Game mode"),
                     SwitchListTile(
                       title: playersSwitch.currentText,
@@ -68,10 +64,10 @@ class LaunchMenuState extends State<LaunchMenu> {
                       value: Settings.triesAllowed.toDouble(),
                       onChanged: (double value) { setState(() { Settings.triesAllowed = value.toInt(); }); },
                     ),
-//                    RaisedButton(
-//                      onPressed: () { /* TODO */ },
-//                      child: Text("TODO"),
-//                    ),
+                    RaisedButton(
+                      onPressed: () { playGame(); },
+                      child: Text("Start"),
+                    ),
                   ],
                 ),
               ),

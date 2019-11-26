@@ -23,7 +23,7 @@ class _TriesPlayState extends State<TriesPlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mastermind'),
+        title: Text('Play - Player 2'),
 //        actions: <Widget>
 //        [
 //          IconButton(
@@ -43,7 +43,7 @@ class _TriesPlayState extends State<TriesPlay> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Text('Player 2', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          //Text('Player 2', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
           Text('Try to find the combination !', style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
           Padding(padding: EdgeInsets.only(bottom: 25.0)),
           Expanded(child: TriesWidget(mastermind: widget.mastermind),),

@@ -13,18 +13,18 @@ class HomeMenuState extends State<HomeMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          //title: Text('Startup Name Gen\''),
+          title: Text('Mastermind'),
         ),
         body: Center(
           child: Column(
             children: <Widget>[
-              Text(
-                "Mastermind",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+//              Text(
+//                "Mastermind",
+//                style: TextStyle(
+//                  fontSize: 18.0,
+//                  fontWeight: FontWeight.bold,
+//                ),
+//              ),
               IntrinsicWidth(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
