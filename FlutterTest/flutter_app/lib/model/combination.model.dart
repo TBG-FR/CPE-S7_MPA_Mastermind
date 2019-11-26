@@ -6,9 +6,11 @@ import '../utils/settings.utils.dart';
 import 'enums/peg-key-type.enum.dart';
 import 'peg-code.model.dart';
 
-class CombinationModel extends ListBase<CodePegModel> {
+class CombinationModel extends ListBase<CodePegModel>
+{
 
   int countTry = 0;
+  List<int> pegAnalyse = [];
 
   CombinationModel()
   {
@@ -16,12 +18,10 @@ class CombinationModel extends ListBase<CodePegModel> {
     {
       this[i] = new CodePegModel();  //file peg.code
     }
-    countTry++;
   }
 
   CombinationModel.withRandomValues()
   {
-    countTry = 0;
     for(int i=0; i<length; i++)
     {
       this[i] = new CodePegModel.withRandomColor();
@@ -47,52 +47,60 @@ class CombinationModel extends ListBase<CodePegModel> {
   // TODO : Count (X times the color Y => can't return that every time)
   bool hasColor(Color color)
   {
+    int j = 0;
+    bool isInList;
     for(CodePegModel cp in this)
-    {
-      if(cp.color == color)
       {
+        isInList = pegAnalyse.indexOf(j) != -1;
+      if(cp.color == color && isInList)
+      {
+        pegAnalyse.remove(j);
         return true;
       }
+      j++;
     }
     return false;
   }
 
   List<KeyPegModel> compare(CombinationModel tryCode)
   {
-    // TODO : Fix bug with countTry
-    print("Combinaison n° :" + countTry.toString() + "\n");
     print("Liste des couleurs " + "\n");
     List<KeyPegModel> result = List<KeyPegModel>(Settings.codeLength);
+    List<int> pegMissPlaced = [];
 
+    int pegWellPlaced =0;
+    int pegWrongPosition = 0;
+    int pegWrong=0;
     for(int i=0; i<Settings.codeLength; i++)
     {
-      KeyPegTypeEnum cpResult;
-
       if(this.elementAt(i).color == tryCode.elementAt(i).color)
       {
         print(i.toString() + " Bien placé ! ");
-        cpResult = KeyPegTypeEnum.WELL_PLACED;
+        pegWellPlaced++;
       }
       else
-      {
-        if(this.hasColor(tryCode.elementAt(i).color))
         {
-          // TODO : Count (X times the color Y => can't return that every time)
-          print(i.toString() + " Mal placé ! ");
-
-          cpResult = KeyPegTypeEnum.WRONG_POSITION;
+          pegMissPlaced.add(i);
+          pegAnalyse.add(i);
+        }
+    }
+    for (int j in pegMissPlaced) {
+      if(this.hasColor(tryCode.elementAt(j).color))
+        {
+          pegWrongPosition++;
+          print(j.toString() + " Mal placé ! ");
         }
         else
         {
-          print(i.toString() + " Mauvais peg ! ");
-
-          cpResult = KeyPegTypeEnum.WRONG_PEG;
+          pegWrong++;
+          print(j.toString() + " Mauvais peg ! ");
         }
-      }
-
-      result[i] = new KeyPegModel(cpResult);
     }
-
+    //pegWrong = Settings.codeLength - (pegWellPlaced+pegWrongPosition);
+    for(int k=0;k<pegWellPlaced;k++) result[k] = new KeyPegModel(KeyPegTypeEnum.WELL_PLACED);
+    for(int k=pegWellPlaced;k<(pegWellPlaced+pegWrongPosition);k++) result[k] = new KeyPegModel(KeyPegTypeEnum.WRONG_POSITION);
+    for(int k=(pegWellPlaced+pegWrongPosition);k<(pegWrong+pegWellPlaced+pegWrongPosition);k++) result[k] = new KeyPegModel(KeyPegTypeEnum.WRONG_PEG);
+    pegAnalyse.clear();
     return result;
   }
 
