@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 
 class Settings {
 
-  static final int codeLength = 4;
-  static final int triesAllowed = 5;
-  static final List<Color> availableColors  = [Colors.blue, Colors.red, Colors.green, Colors.yellow];
-  static final Color defaultColor = Colors.blueGrey;
+  static const int codeLengthMin = 4;
+  static const int codeLengthMax = 8;
+
+  static int codeLength = codeLengthMin;
+  static int triesAllowed = 5;
+
+  static const List<Color> availableColors  = [Colors.blue, Colors.red, Colors.green, Colors.yellow];
+  static const Color defaultColor = Colors.blueGrey;
+  static const double defaultSize = 50;
   static final Random random = new Random();
 
   // TODO : Move to Tools/Utils/Helper
   static Color getRandomColor()
   {
-    int randomInt = random.nextInt(codeLength);
+    int randomInt = random.nextInt(availableColors.length);
 
     return availableColors[randomInt];
   }
@@ -33,7 +38,7 @@ class Settings {
     Color returnColor;
     int i;
     returnColor = availableColors[0];
-    for(i=0;i<(codeLength-1);i++)
+    for(i=0;i<(availableColors.length-1);i++)
       {
         if(color == availableColors[i]) {
           returnColor = availableColors[i+1];

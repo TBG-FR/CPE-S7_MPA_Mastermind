@@ -47,7 +47,7 @@ class _ResultPageState extends State<ResultPage> {
           _textFromTries(widget.result.numberOfTries),
           Padding(padding: EdgeInsets.only(top: 100.0)),
           _textFromCombination(),
-          Expanded(child: CombinationWidget(combination: widget.result.secretCode),),
+          Expanded(child: CombinationWidget(combination: widget.result.secretCode, pegSize: 35,),),
         ],
       ),
 //      floatingActionButton:

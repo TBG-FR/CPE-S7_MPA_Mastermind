@@ -8,8 +8,9 @@ import 'peg.widget.dart';
 class CombinationWidget extends StatefulWidget {
 
   final CombinationModel combination;
+  final double pegSize;
 
-  CombinationWidget({Key key, @required this.combination}) : super(key: key);
+  CombinationWidget({Key key, @required this.combination, this.pegSize}) : super(key: key);
 
   @override
   _CombinationWidgetState createState() => _CombinationWidgetState();
@@ -19,25 +20,45 @@ class _CombinationWidgetState extends State<CombinationWidget> {
 
   @override
   Widget build(BuildContext context) {
-    
-    return MediaQuery.removePadding(
 
-        context: context,
-        removeTop: true,
-
-        child: ListView.builder(
-            shrinkWrap: true,
-            itemCount: Settings.codeLength,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, position)
-            {
-              return GestureDetector(
-                onTap: () => _modifyCode(position),
-                child: new PegItem(pegModel: widget.combination[position]),
-              );
-            }
-        )
+    return SizedBox(
+      child: MediaQuery.removePadding(
+          context: context,
+          removeTop: true,
+            child: ListView.builder
+              (
+                shrinkWrap: true,
+                itemCount: Settings.codeLength,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, position)
+                {
+                  return GestureDetector(
+                    onTap: () => _modifyCode(position),
+                    child: new PegItem(pegModel: widget.combination[position], pegSize: widget.pegSize,),
+                  );
+                }
+            )
+        ),
     );
+
+//    return MediaQuery.removePadding(
+//        context: context,
+//        removeTop: true,
+//
+//        child: ListView.builder
+//        (
+//            shrinkWrap: true,
+//            itemCount: Settings.codeLength,
+//            scrollDirection: Axis.horizontal,
+//            itemBuilder: (context, position)
+//            {
+//              return GestureDetector(
+//                onTap: () => _modifyCode(position),
+//                child: new PegItem(pegModel: widget.combination[position]),
+//              );
+//            }
+//        )
+//    );
 
 //    return ListView.builder(
 //              shrinkWrap: true,

@@ -81,7 +81,7 @@ class MastermindModel {
     {
       return new ResultModel.abortedGame(
           this.secretCode,
-          this.tries.length
+          this.tries.length,
       );
     }
     else
@@ -89,7 +89,7 @@ class MastermindModel {
       return new ResultModel.finishedGame(
           this.secretCode,
           this.tries.length,
-          result
+          result,
       );
     }
   }

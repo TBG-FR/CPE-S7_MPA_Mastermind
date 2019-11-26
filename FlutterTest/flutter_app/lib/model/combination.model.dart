@@ -8,7 +8,8 @@ import 'peg-code.model.dart';
 
 class CombinationModel extends ListBase<CodePegModel> {
 
-  static int countTry = 0;
+  int countTry = 0;
+
   CombinationModel()
   {
     for(int i=0; i<length; i++)
@@ -27,8 +28,8 @@ class CombinationModel extends ListBase<CodePegModel> {
     }
   }
 
-  void editPeg(int position, Color setColor) {
-
+  void editPeg(int position, Color setColor)
+  {
     if(Settings.availableColors.contains(setColor))
     {
       if(this.elementAt(position) == null)

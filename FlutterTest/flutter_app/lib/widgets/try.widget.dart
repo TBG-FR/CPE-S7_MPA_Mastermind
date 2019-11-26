@@ -17,14 +17,24 @@ class TryWidget extends StatelessWidget {
 //  }
 
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: <Widget>[
+        Container(
+          height: 35,
+          child: CombinationWidget(combination: tryModel.tryCode, pegSize: 30,),
+        ),
+        Container(
+          height: 25,
+          child: HintsWidget(result: tryModel.result),
+        ),
+        Padding(padding: EdgeInsets.only(bottom: 25.0)),
+        /*
         Expanded(
             child: Column(
               children: <Widget>[
                 Container(
                   height: 65,
-                  child: CombinationWidget(combination: tryModel.tryCode),
+                  child: CombinationWidget(combination: tryModel.tryCode, pegSize: 30,),
                 )
               ],
             )
@@ -39,6 +49,7 @@ class TryWidget extends StatelessWidget {
               ],
             )
         ),
+        */
       ],
     );
   }

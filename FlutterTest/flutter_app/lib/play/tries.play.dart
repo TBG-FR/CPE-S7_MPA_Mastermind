@@ -4,21 +4,20 @@ import 'package:flutter_app/widgets/dialog.widget.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/pages/result.page.dart';
-import 'package:flutter_app/widgets/combination.widget.dart';
 import 'package:flutter_app/widgets/tries.widget.dart';
 import '../model/mastermind.model.dart';
 
-class MastermindPage extends StatefulWidget
+class TriesPlay extends StatefulWidget
 {
   final MastermindModel mastermind;// = new Mastermind();
 
-  MastermindPage({Key key, @required this.mastermind}) : super(key: key);
+  TriesPlay({Key key, @required this.mastermind}) : super(key: key);
 
   @override
-  _MastermindPageState createState() => _MastermindPageState();
+  _TriesPlayState createState() => _TriesPlayState();
 }
 
-class _MastermindPageState extends State<MastermindPage> {
+class _TriesPlayState extends State<TriesPlay> {
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +43,10 @@ class _MastermindPageState extends State<MastermindPage> {
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: <Widget>[
-          Expanded(child: CombinationWidget(combination: widget.mastermind.secretCode),),
+          Text('Player 2', style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
+          Text('Try to find the combination !', style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
+          Padding(padding: EdgeInsets.only(bottom: 25.0)),
           Expanded(child: TriesWidget(mastermind: widget.mastermind),),
-
         ],
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -99,7 +99,7 @@ class _MastermindPageState extends State<MastermindPage> {
             [
               new MapEntry(DialogWidget.labelTitle, "Abandonner"),
               new MapEntry(DialogWidget.labelText, "Voulez-vous vraiment abandonner ?"),
-              new MapEntry(DialogWidget.labelYes, "Oui, c'est trop dur !"),
+              new MapEntry(DialogWidget.labelYes, "Oui :("),
               new MapEntry(DialogWidget.labelCancel, "Non, je vais gagner !"),
             ]
         ),
@@ -116,5 +116,4 @@ class _MastermindPageState extends State<MastermindPage> {
           builder: (BuildContext context) => new ResultPage(result: widget.mastermind.endGame(ResultEnum.aborted))));
     }
   }
-
 }
