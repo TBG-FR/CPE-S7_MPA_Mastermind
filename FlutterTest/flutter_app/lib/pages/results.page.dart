@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/model/results.model.dart';
 import 'package:flutter_app/utils/enums.utils.dart';
@@ -39,13 +40,14 @@ class _ResultsPageState extends State<ResultsPage> {
 //        ],
       ),
       body: Container(
-        padding: EdgeInsets.all(50),
+        alignment: Alignment.topCenter,
+        //padding: EdgeInsets.all(2.5),
         child: Table(
           columnWidths:
           {
-            0: FixedColumnWidth(150.0),
-            1: FixedColumnWidth(50.0),
-            2: FixedColumnWidth(100.0),
+            0: FlexColumnWidth(150.0),
+            1: FlexColumnWidth(75.0),
+            2: FlexColumnWidth(100.0),
           },
           children: _buildTableRows(widget.results),
       ),)
@@ -61,12 +63,30 @@ class _ResultsPageState extends State<ResultsPage> {
         list.add(_buildTableRow(resultModel));
       }
     
-    return list;
+    return list.reversed.toList();
   }
 
   TableRow _buildTableRow(ResultModel resultModel)
   {
+
+    Color col;
+    switch(resultModel.gameResult)
+    {
+      case ResultEnum.won:
+        col = Colors.green;
+        break;
+      case ResultEnum.lost:
+        col = Colors.red;
+        break;
+      case ResultEnum.aborted:
+      default:
+        col = Colors.orange;
+        break;
+    }
+
     return TableRow(
+
+      decoration: new BoxDecoration(color: col),
       children: [
         TableCell(child: Text(new DateFormat("dd-MM-yyyy - mm:ss").format(resultModel.dateTime)),),
         TableCell(child: Text(EnumToString.parse(resultModel.gameResult).toUpperCase()),),
