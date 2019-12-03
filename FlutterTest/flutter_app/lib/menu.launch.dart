@@ -21,10 +21,6 @@ class LaunchMenuState extends State<LaunchMenu> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Configuration du Jeu'),
-        ),
-        body: Center(
-          child: Column(
-            children: <Widget>[
 //              Text(
 //                "Mastermind",
 //                style: TextStyle(
@@ -32,6 +28,11 @@ class LaunchMenuState extends State<LaunchMenu> {
 //                  fontWeight: FontWeight.bold,
 //                ),
 //              ),
+        ),
+        body: Center(
+          child:
+//          Column(
+//            children: <Widget>[
               IntrinsicWidth(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -71,8 +72,8 @@ class LaunchMenuState extends State<LaunchMenu> {
                   ],
                 ),
               ),
-            ],
-          ),
+//            ],
+//          ),
         )
     );
   }

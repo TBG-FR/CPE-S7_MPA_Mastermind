@@ -10,6 +10,26 @@ class Settings {
   static int codeLength = codeLengthMin;
   static int triesAllowed = 5;
 
+//  static CodePegTypeEnum pegType = CodePegTypeEnum.COLORS;
+//  static Type getCurrentPegType()
+//  {
+//    switch(pegType)
+//    {
+//      case CodePegTypeEnum.LETTERS:
+//        return CodePegTypeLetterEnum;
+//        break;
+// /*
+//      case CodePegTypeEnum.EMOJIS:
+//        return CodePegTypeColorEnum;
+//        break;
+//*/
+//      case CodePegTypeEnum.COLORS:
+//      default:
+//        return CodePegTypeColorEnum;
+//        break;
+//    }
+//  }
+
   static const List<Color> availableColors  = [Colors.blue, Colors.red, Colors.green, Colors.yellow];
   static const Color defaultColor = Colors.blueGrey;
   static const double defaultSize = 50;

@@ -106,7 +106,7 @@ class MastermindModel {
 
   static void modifyCode(CombinationModel code, int pegIndex)
   {
-    code[pegIndex].color = Settings.getNextColor(code[pegIndex].color);
+    code.pegs[pegIndex].color = Settings.getNextColor(code.pegs[pegIndex].color);
   }
 
 //  // TODO : Return an Enum value (see below)

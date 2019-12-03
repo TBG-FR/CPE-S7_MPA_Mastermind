@@ -11,7 +11,4 @@ class TryModel
   {
     tryCode = new CombinationModel();
   }
-
-
-
 }

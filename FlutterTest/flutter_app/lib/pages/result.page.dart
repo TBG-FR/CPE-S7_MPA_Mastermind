@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
+import 'package:flutter_app/utils/results.manager.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
 
 class ResultPage extends StatefulWidget {
@@ -16,8 +17,13 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    ResultsManager.addResult(widget.result);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Mastermind - Result'),

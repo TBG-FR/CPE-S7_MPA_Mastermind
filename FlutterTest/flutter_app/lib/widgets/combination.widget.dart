@@ -34,7 +34,7 @@ class _CombinationWidgetState extends State<CombinationWidget> {
                 {
                   return GestureDetector(
                     onTap: () => _modifyCode(position),
-                    child: new PegItem(pegModel: widget.combination[position], pegSize: widget.pegSize,),
+                    child: new PegItem(pegModel: widget.combination.pegs[position], pegSize: widget.pegSize,),
                   );
                 }
             )

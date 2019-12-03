@@ -1,5 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_app/model/result.model.dart';
+import 'package:flutter_app/model/results.model.dart';
+import 'package:flutter_app/pages/results.page.dart';
+import 'package:flutter_app/utils/results.manager.dart';
 import 'menu.launch.dart';
 
 class HomeMenu extends StatefulWidget {
@@ -55,8 +59,12 @@ class HomeMenuState extends State<HomeMenu> {
     Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new LaunchMenu()));
   }
 
-  void seeResults() {
-
+  void seeResults() async
+  {
+    await ResultsManager.getResults().then((ResultsModel results)
+    {
+      Navigator.of(context).push(new MaterialPageRoute(builder: (BuildContext context) => new ResultsPage(results: results,)));
+    });
   }
 
   void seeCredits() {
