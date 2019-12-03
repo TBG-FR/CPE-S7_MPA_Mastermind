@@ -88,9 +88,9 @@ class _ResultsPageState extends State<ResultsPage> {
 
       decoration: new BoxDecoration(color: col),
       children: [
-        TableCell(child: Text(new DateFormat("dd-MM-yyyy - mm:ss").format(resultModel.dateTime)),),
-        TableCell(child: Text(EnumToString.parse(resultModel.gameResult).toUpperCase()),),
-        TableCell(child: Text(resultModel.numberOfTries.toString() + (resultModel.numberOfTries > 1 ? " tries" : " try")),),
+        TableCell(child: Text(new DateFormat("dd-MM-yyyy - mm:ss").format(resultModel.dateTime), style: TextStyle(fontWeight: FontWeight.bold))),
+        TableCell(child: Text(EnumToString.parse(resultModel.gameResult).toUpperCase(), style: TextStyle(fontWeight: FontWeight.bold))),
+        TableCell(child: Text(resultModel.numberOfTries.toString() + (resultModel.numberOfTries > 1 ? " tries" : " try"), style: TextStyle(fontWeight: FontWeight.bold))),
       ]
     );
   }
