@@ -2,29 +2,65 @@
 import 'dart:collection';
 import 'dart:ui';
 import 'package:flutter_app/model/peg-key.model.dart';
+import 'package:json_annotation/json_annotation.dart';
 import '../utils/settings.utils.dart';
 import 'enums/peg-key-type.enum.dart';
 import 'peg-code.model.dart';
 
-class CombinationModel extends ListBase<CodePegModel>
+
+/// This allows the `CombinationModel` class to access private members in
+/// the generated file. The value for this is *.g.dart, where
+/// the star denotes the source file name.
+part 'combination.model.g.dart';
+
+/// An annotation for the code generator to know that this class needs the
+/// JSON serialization logic to be generated.
+@JsonSerializable(explicitToJson: true)
+
+class CombinationModel //extends ListBase<CodePegModel>
 {
 
+  /// "pegs_list" should be mapped 'pegs' property.
+  @JsonKey(name: 'pegs_list')
+  List<CodePegModel> pegs = new List<CodePegModel>(Settings.codeLength);
+
+  /// "count_try" should be mapped 'countTry' property.
+  @JsonKey(name: 'count_try')
   int countTry = 0;
+
+  /// "peg_analyse" should be mapped 'pegAnalyse' property.
+  @JsonKey(name: 'peg_analyse')
   List<int> pegAnalyse = [];
+
+  /// A necessary factory constructor for creating a new User instance
+  /// from a map. Pass the map to the generated `_$UserFromJson()` constructor.
+  /// The constructor is named after the source class, in this case, User.
+  factory CombinationModel.fromJson(Map<String, dynamic> json) => _$CombinationModelFromJson(json);
+
+  /// `toJson` is the convention for a class to declare support for serialization
+  /// to JSON. The implementation simply calls the private, generated
+  /// helper method `_$UserToJson`.
+  Map<String, dynamic> toJson() => _$CombinationModelToJson(this);
+
+  // ============================================
+
+//  CombinationModel(this.countTry, this.pegAnalyse);
+
+  // ============================================
 
   CombinationModel()
   {
-    for(int i=0; i<length; i++)
+    for(int i=0; i<Settings.codeLength; i++)
     {
-      this[i] = new CodePegModel();  //file peg.code
+      this.pegs[i] = new CodePegModel();  //file peg.code
     }
   }
 
   CombinationModel.withRandomValues()
   {
-    for(int i=0; i<length; i++)
+    for(int i=0; i<Settings.codeLength; i++)
     {
-      this[i] = new CodePegModel.withRandomColor();
+      this.pegs[i] = new CodePegModel.withRandomColor();
     }
   }
 
@@ -32,13 +68,13 @@ class CombinationModel extends ListBase<CodePegModel>
   {
     if(Settings.availableColors.contains(setColor))
     {
-      if(this.elementAt(position) == null)
+      if(this.pegs.elementAt(position) == null)
       {
-        this[position] = new CodePegModel.withColor(setColor);
+        this.pegs[position] = new CodePegModel.withColor(setColor);
       }
       else
       {
-        this.elementAt(position).color = setColor;
+        this.pegs.elementAt(position).color = setColor;
       }
     }
     else { /* do nothing */ }
@@ -49,7 +85,7 @@ class CombinationModel extends ListBase<CodePegModel>
   {
     int j = 0;
     bool isInList;
-    for(CodePegModel cp in this)
+    for(CodePegModel cp in this.pegs)
       {
         isInList = pegAnalyse.indexOf(j) != -1;
       if(cp.color == color && isInList)
@@ -73,7 +109,7 @@ class CombinationModel extends ListBase<CodePegModel>
     int pegWrong=0;
     for(int i=0; i<Settings.codeLength; i++)
     {
-      if(this.elementAt(i).color == tryCode.elementAt(i).color)
+      if(this.pegs.elementAt(i).color == tryCode.pegs.elementAt(i).color)
       {
         print(i.toString() + " Bien placé ! ");
         pegWellPlaced++;
@@ -85,7 +121,7 @@ class CombinationModel extends ListBase<CodePegModel>
         }
     }
     for (int j in pegMissPlaced) {
-      if(this.hasColor(tryCode.elementAt(j).color))
+      if(this.hasColor(tryCode.pegs.elementAt(j).color))
         {
           pegWrongPosition++;
           print(j.toString() + " Mal placé ! ");
@@ -108,29 +144,26 @@ class CombinationModel extends ListBase<CodePegModel>
   // ------------------------------------------------------------------------
   // ------------------------------------------------------------------------
 
-  List innerList = new List(Settings.codeLength);
-
-  int get length => innerList.length;
-
-  /// WARNING : Useless
-  set length(int length) {
-    //innerList.length = length;
-  }
-
-  void operator[]=(int index, CodePegModel value) {
-    innerList[index] = value;
-  }
-
-  CodePegModel operator [](int index) => innerList[index];
-
-  // Though not strictly necessary, for performance reasons
-  // you should implement add and addAll.
-
-  void add(CodePegModel value) => innerList.add(value);
-
-  void addAll(Iterable<CodePegModel> all) => innerList.addAll(all);
-
-
-
+//  List innerList = new List(Settings.codeLength);
+//
+//  int get length => innerList.length;
+//
+//  /// WARNING : Useless
+//  set length(int length) {
+//    //innerList.length = length;
+//  }
+//
+//  void operator[]=(int index, CodePegModel value) {
+//    innerList[index] = value;
+//  }
+//
+//  CodePegModel operator [](int index) => innerList[index];
+//
+//  // Though not strictly necessary, for performance reasons
+//  // you should implement add and addAll.
+//
+//  void add(CodePegModel value) => innerList.add(value);
+//
+//  void addAll(Iterable<CodePegModel> all) => innerList.addAll(all);
 
 }
