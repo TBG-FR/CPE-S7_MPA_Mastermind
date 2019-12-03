@@ -48,6 +48,7 @@ class _TriesPlayState extends State<TriesPlay> {
           Text('Try to find the combination !', style: TextStyle(fontSize: 25), textAlign: TextAlign.center),
           Padding(padding: EdgeInsets.only(bottom: 25.0)),
           Expanded(child: TriesWidget(mastermind: widget.mastermind),),
+          Padding(padding: EdgeInsets.only(top: 90.0)),
         ],
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
