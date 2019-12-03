@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/model/results.model.dart';
-import 'package:flutter_app/widgets/combination.widget.dart';
+import 'package:flutter_app/utils/enums.utils.dart';
+import 'package:intl/intl.dart';
 
 class ResultsPage extends StatefulWidget {
 
@@ -38,30 +38,40 @@ class _ResultsPageState extends State<ResultsPage> {
 //          ),
 //        ],
       ),
-      body:
-//      Column(
-//        mainAxisSize: MainAxisSize.max,
-//        mainAxisAlignment: MainAxisAlignment.center,
-//        children: <Widget>
-//        [
-        ListView.builder(
-          padding: const EdgeInsets.all(8),
-          itemCount: widget.results.results.length,
-          itemBuilder: (BuildContext context, int index) {
-            return Container(
-              height: 50,
-              child: Center(child: Text('Game ${widget.results.results[index].gameResult.toString()} at ${widget.results.results[index].dateTime.toString()}')),
-            );
-          }),
-//          //ListView.builder(itemBuilder: )
-////          Padding(padding: EdgeInsets.only(top: 100.0)),
-////          _textFromResultEnum(widget.result.gameResult),
-////          _textFromTries(widget.result.numberOfTries),
-////          Padding(padding: EdgeInsets.only(top: 100.0)),
-////          _textFromCombination(),
-////          Expanded(child: CombinationWidget(combination: widget.result.secretCode, pegSize: 35,),),
-//        ],
-//      ),
+      body: Container(
+        padding: EdgeInsets.all(50),
+        child: Table(
+          columnWidths:
+          {
+            0: FixedColumnWidth(150.0),
+            1: FixedColumnWidth(50.0),
+            2: FixedColumnWidth(100.0),
+          },
+          children: _buildTableRows(widget.results),
+      ),)
+    );
+  }
+
+  List<TableRow> _buildTableRows(ResultsModel resultsModel)
+  {
+    List<TableRow> list = new List<TableRow>();    
+    
+    for(ResultModel resultModel in resultsModel.results)
+      {
+        list.add(_buildTableRow(resultModel));
+      }
+    
+    return list;
+  }
+
+  TableRow _buildTableRow(ResultModel resultModel)
+  {
+    return TableRow(
+      children: [
+        TableCell(child: Text(new DateFormat("dd-MM-yyyy - mm:ss").format(resultModel.dateTime)),),
+        TableCell(child: Text(EnumToString.parse(resultModel.gameResult).toUpperCase()),),
+        TableCell(child: Text(resultModel.numberOfTries.toString() + (resultModel.numberOfTries > 1 ? " tries" : " try")),),
+      ]
     );
   }
 

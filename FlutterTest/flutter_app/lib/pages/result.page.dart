@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
-import 'package:flutter_app/utils/results.manager.dart';
+import 'package:flutter_app/utils/results.utils.dart';
 import 'package:flutter_app/widgets/combination.widget.dart';
 
 class ResultPage extends StatefulWidget {

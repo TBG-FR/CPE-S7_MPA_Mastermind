@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/model/results.model.dart';
 import 'package:flutter_app/pages/results.page.dart';
-import 'package:flutter_app/utils/results.manager.dart';
+import 'package:flutter_app/utils/results.utils.dart';
 import 'menu.launch.dart';
 
 class HomeMenu extends StatefulWidget {

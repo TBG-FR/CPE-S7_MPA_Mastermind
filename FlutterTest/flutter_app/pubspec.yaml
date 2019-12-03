@@ -37,6 +37,9 @@ dev_dependencies:
   # Files
   path_provider: ^1.4.0
 
+  # Localization
+  intl: ^0.16.0
+
   # JSON
   build_runner: ^1.0.0
   json_serializable: ^2.0.0
