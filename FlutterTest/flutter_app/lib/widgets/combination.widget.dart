@@ -10,7 +10,7 @@ class CombinationWidget extends StatefulWidget {
   final CombinationModel combination;
   final double pegSize;
 
-  CombinationWidget({Key key, @required this.combination, this.pegSize}) : super(key: key);
+  CombinationWidget({Key key, @required this.combination, this.pegSize = 50}) : super(key: key);
 
   @override
   _CombinationWidgetState createState() => _CombinationWidgetState();
@@ -32,68 +32,18 @@ class _CombinationWidgetState extends State<CombinationWidget> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, position)
                 {
-                  return GestureDetector(
-                    onTap: () => _modifyCode(position),
-                    child: new PegItem(pegModel: widget.combination.pegs[position], pegSize: widget.pegSize,),
-                  );
+                  if(widget.combination.editable)
+                  {
+                    return GestureDetector(
+                      onTap: () => _modifyCode(position),
+                      child: new PegItem(pegModel: widget.combination.pegs[position], pegSize: widget.pegSize,),
+                    );
+                  }
+                  else return new PegItem(pegModel: widget.combination.pegs[position], pegSize: widget.pegSize,);
                 }
             )
         ),
     );
-
-//    return MediaQuery.removePadding(
-//        context: context,
-//        removeTop: true,
-//
-//        child: ListView.builder
-//        (
-//            shrinkWrap: true,
-//            itemCount: Settings.codeLength,
-//            scrollDirection: Axis.horizontal,
-//            itemBuilder: (context, position)
-//            {
-//              return GestureDetector(
-//                onTap: () => _modifyCode(position),
-//                child: new PegItem(pegModel: widget.combination[position]),
-//              );
-//            }
-//        )
-//    );
-
-//    return ListView.builder(
-//              shrinkWrap: true,
-//              padding: EdgeInsets.all(0),
-//              itemCount: Settings.codeLength,
-//              scrollDirection: Axis.horizontal,
-//              itemBuilder: (context, position)
-//              {
-//                return GestureDetector(
-//                  onTap: () => _modifyCode(position),
-//                  child: new PegItem(pegModel: widget.combination[position]),
-//                );
-//              }
-//    );
-
-//    return Row(
-//      mainAxisSize: MainAxisSize.min,
-//      children: [
-//        Expanded(
-//          child: IconButton(icon: new Icon(Icons.favorite_border, size: 45,),),
-////          child: ListView.builder(
-////              shrinkWrap: true,
-////              itemCount: Settings.codeLength,
-////              scrollDirection: Axis.horizontal,
-////              itemBuilder: (context, position)
-////              {
-////                return GestureDetector(
-////                  onTap: () => _modifyCode(position),
-////                  child: new PegItem(pegModel: widget.combination[position]),
-////                );
-////              }
-////          ),
-//        )
-//      ],
-//    );
   }
 
   void _modifyCode(int position)

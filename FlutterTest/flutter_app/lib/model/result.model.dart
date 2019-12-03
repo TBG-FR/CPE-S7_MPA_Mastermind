@@ -48,11 +48,13 @@ class ResultModel {
 
   factory ResultModel.abortedGame(CombinationModel code, int tries)
   {
+    code.editable = false;
     return ResultModel(code, tries - 1, ResultEnum.aborted, DateTime.now());
   }
 
   factory ResultModel.finishedGame(CombinationModel code, int tries, ResultEnum result)
   {
+    code.editable = false;
     return ResultModel(code, tries, result, DateTime.now());
   }
 

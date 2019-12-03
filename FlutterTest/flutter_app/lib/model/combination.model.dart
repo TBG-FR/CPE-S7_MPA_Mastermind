@@ -20,6 +20,9 @@ part 'combination.model.g.dart';
 class CombinationModel //extends ListBase<CodePegModel>
 {
 
+  @JsonKey(ignore: true)
+  bool editable = true;
+
   /// "pegs_list" should be mapped 'pegs' property.
   @JsonKey(name: 'pegs_list')
   List<CodePegModel> pegs = new List<CodePegModel>(Settings.codeLength);
@@ -139,31 +142,5 @@ class CombinationModel //extends ListBase<CodePegModel>
     pegAnalyse.clear();
     return result;
   }
-
-  // ------------------------------------------------------------------------
-  // ------------------------------------------------------------------------
-  // ------------------------------------------------------------------------
-
-//  List innerList = new List(Settings.codeLength);
-//
-//  int get length => innerList.length;
-//
-//  /// WARNING : Useless
-//  set length(int length) {
-//    //innerList.length = length;
-//  }
-//
-//  void operator[]=(int index, CodePegModel value) {
-//    innerList[index] = value;
-//  }
-//
-//  CodePegModel operator [](int index) => innerList[index];
-//
-//  // Though not strictly necessary, for performance reasons
-//  // you should implement add and addAll.
-//
-//  void add(CodePegModel value) => innerList.add(value);
-//
-//  void addAll(Iterable<CodePegModel> all) => innerList.addAll(all);
 
 }

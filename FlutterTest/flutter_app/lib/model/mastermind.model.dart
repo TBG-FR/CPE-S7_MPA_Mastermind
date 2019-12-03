@@ -44,12 +44,12 @@ class MastermindModel {
   void newTry()
   {
     tries.add(new TryModel());
-
   }
 
   ResultModel checkLastTry()
   {
     bool won = true;
+    tries.last.tryCode.editable = false;
     tries.last.result = secretCode.compare(tries.last.tryCode);
 
     for(KeyPegModel kp in tries.last.result)

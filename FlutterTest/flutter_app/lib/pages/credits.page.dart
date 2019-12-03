@@ -18,20 +18,10 @@ class _CreditsPageState extends State<CreditsPage> {
       appBar: AppBar(
         title: Text('Credits'),
       ),
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>
-        [
-          Text("Mastermind Reloaded"),
-          Text('"Gestion de Projet Agile"'),
-          Text('CPE Lyon - 4IRC (S7)'),
-          Text('Developed by (Name & Github) : '),
-          Text('Julien M. (@jmoorat)'),
-          Text('Jeremy M. (@JeremyCPE)'),
-          Text('Robin D. (@RobinDeville)'),
-          Text('Tom-Brian G. (@TBG-FR)'),
-        ],
+      body: Container(
+        alignment: Alignment.center,
+        padding: EdgeInsets.all(10),
+        child: Text("Mastermind Reloaded \n Gestion de Projet Agile \n CPE Lyon - 4IRC (S7) \n\n\n Developed by (Name & Github) :  \n\n Julien M. (@jmoorat) \n Jeremy M. (@JeremyCPE) \n Robin D. (@RobinDeville) \n Tom-Brian G. (@TBG-FR) \n"),
       ),
     );
   }
