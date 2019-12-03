@@ -1,9 +1,10 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/widgets/dialog.widget.dart';
+import 'package:flutter_app/widgets/dialog_abort.widget.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/pages/result.page.dart';
+import 'package:flutter_app/widgets/dialog_help.widget.dart';
 import 'package:flutter_app/widgets/tries.widget.dart';
 import '../model/mastermind.model.dart';
 
@@ -24,21 +25,21 @@ class _TriesPlayState extends State<TriesPlay> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Play - Player 2'),
-//        actions: <Widget>
-//        [
-//          IconButton(
-//            icon: Icon(Icons.check_circle),
-//            color: Colors.green,
-//            iconSize: 45,
-//            onPressed: () => widget.mastermind.checkLastTry(),
+        actions: <Widget>
+        [
+          IconButton(
+            icon: Icon(Icons.help),
+            color: Colors.black,
+            iconSize: 45,
+           onPressed: () {  setState (() { _helpGameDialog(); }); },
 //          ),
 //          IconButton(
 //            icon: Icon(Icons.cancel),
 //            color: Colors.red,
 //            iconSize: 45,
 //            //onPressed: () => widget.mastermind = new Mastermind(),
-//          ),
-//        ],
+          ),
+        ],
       ),
       body: Column(
         mainAxisSize: MainAxisSize.max,
@@ -71,6 +72,7 @@ class _TriesPlayState extends State<TriesPlay> {
               backgroundColor: Colors.white,
               child: Icon(Icons.check_circle, color: Colors.green, size: 50,),
             ),
+
           ],
         ),
     );
@@ -93,14 +95,14 @@ class _TriesPlayState extends State<TriesPlay> {
   void _cancelGameDialog()
   {
 
-    DialogWidget.displayFull(context,
+    DialogAbortWidget.displayFull(context,
       new Map.fromEntries
         (
             [
-              new MapEntry(DialogWidget.labelTitle, "Abandonner"),
-              new MapEntry(DialogWidget.labelText, "Voulez-vous vraiment abandonner ?"),
-              new MapEntry(DialogWidget.labelYes, "Oui :("),
-              new MapEntry(DialogWidget.labelCancel, "Non, je vais gagner !"),
+              new MapEntry(DialogAbortWidget.labelTitle, "Abandonner"),
+              new MapEntry(DialogAbortWidget.labelText, "Voulez-vous vraiment abandonner ?"),
+              new MapEntry(DialogAbortWidget.labelYes, "Oui :("),
+              new MapEntry(DialogAbortWidget.labelCancel, "Non, je vais gagner !"),
             ]
         ),
         _cancelGameAction);
@@ -115,5 +117,27 @@ class _TriesPlayState extends State<TriesPlay> {
       Navigator.of(context).push(new MaterialPageRoute(
           builder: (BuildContext context) => new ResultPage(result: widget.mastermind.endGame(ResultEnum.aborted))));
     }
+  }
+
+  void _helpGameDialog() {
+    DialogHelpWidget.displayFull(context,
+        new Map.fromEntries
+          (
+            [
+              new MapEntry(DialogHelpWidget.labelTitle, "Aide"),
+              new MapEntry(DialogHelpWidget.labelText1, "Valider la proposition"),
+              new MapEntry(DialogHelpWidget.labelText2, "Une piece a une bonne couleur mais est mal placée"),
+              new MapEntry(DialogHelpWidget.labelText3, "Une piece a une bonne couleur et est bien placée"),
+              new MapEntry(DialogHelpWidget.labelText4, "Une piece a une mauvaise couleur"),
+              new MapEntry(DialogHelpWidget.labelText5, "Recommencer"),
+              new MapEntry(DialogHelpWidget.labelText6, "Abandonner"),
+              new MapEntry(DialogHelpWidget.labelCancel, "J'ai compris !"),
+            ]
+        ),
+        );
+  }
+
+  void _cancelHelpAction(bool userResponse) {
+    Navigator.pop(context);
   }
 }

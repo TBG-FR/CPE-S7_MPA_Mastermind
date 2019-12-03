@@ -2,7 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/menu.launch.dart';
-import 'package:flutter_app/widgets/dialog.widget.dart';
+import 'package:flutter_app/widgets/dialog_abort.widget.dart';
 import 'package:flutter_app/model/enums/result.enum.dart';
 import 'package:flutter_app/model/result.model.dart';
 import 'package:flutter_app/pages/result.page.dart';
